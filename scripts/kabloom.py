@@ -7,6 +7,7 @@ Created on Mon Jun  1 18:30:01 2020
 """
 
 
+import os
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -21,10 +22,10 @@ import math
 def get_areas():
     
     #load areas
-    areas_2017 = np.load('/home/esther/poppy-finder/data/areas_2017.npz')
-    areas_2018 = np.load('/home/esther/poppy-finder/data/areas_2018.npz')
-    areas_2019 = np.load('/home/esther/poppy-finder/data/areas_2019.npz')
-    areas_2020 = np.load('/home/esther/poppy-finder/data/areas_2020.npz')
+    areas_2017 = np.load(os.environ['PWD'] + '/data/areas_2017.npz')
+    areas_2018 = np.load(os.environ['PWD'] + '/data/areas_2018.npz')
+    areas_2019 = np.load(os.environ['PWD'] + '/data/areas_2019.npz')
+    areas_2020 = np.load(os.environ['PWD'] + '/data/areas_2020.npz')
     
     #convert from .npz to dictionaries
     areas_2017_dict = {item: areas_2017[item] for item in areas_2017.files}
@@ -77,10 +78,11 @@ def get_areas():
 df_antelope, df_elsinore, df_grassmtn = get_areas()
 
 
-observed_antelope = pd.read_csv('/home/esther/poppy-finder/data/observations-antelope.csv')
-observed_elsinore = pd.read_csv('/home/esther/poppy-finder/data/observations-elsinore.csv') 
+#observed_antelope = pd.read_csv('/home/esther/poppy-finder/data/observations-antelope.csv')
+#observed_elsinore = pd.read_csv('/home/esther/poppy-finder/data/observations-elsinore.csv') 
 
-
+observed_antelope = pd.read_csv(os.environ['PWD'] + '/data/observations-antelope.csv')
+observed_elsinore = pd.read_csv(os.environ['PWD'] + '/data/observations-elsinore.csv') 
 #%%
 
 st.markdown('---')
