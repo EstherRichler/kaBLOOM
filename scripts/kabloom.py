@@ -36,6 +36,9 @@ def get_areas():
     #merge all years into a single dictionary
     areas_dict = {**areas_2017_dict, **areas_2018_dict, **areas_2019_dict, **areas_2020_dict}
     
+    #get filenames
+    filenames_list = list(areas_dict)
+    
     #get list of locations
     location_list = [name.split('_')[1] for name in list(areas_dict)]
     
@@ -67,18 +70,37 @@ def get_areas():
             
     #put data into dataframe
     df = pd.DataFrame({'location':location_list, 'background':background_list, 'patches':patches_list, \
-                   'n_patches':n_patches_list, 'max_patch':max_patch_list}, index=date_list)
+                   'n_patches':n_patches_list, 'max_patch':max_patch_list, 'filename':filenames_list}, index=date_list)
+    
+    df_list = pd.DataFrame({'location':location_list, 'filename':filenames_list}, index=date_list)
     
     df_antelope = df[df.location=='antelope']
     df_elsinore = df[df.location=='elsinore']
     df_grassmtn = df[df.location=='grassmtn']
     
-    return df_antelope, df_elsinore, df_grassmtn
+    return df_antelope, df_elsinore, df_grassmtn, df_list
 
-df_antelope, df_elsinore, df_grassmtn = get_areas()
+df_antelope, df_elsinore, df_grassmtn, df_list = get_areas()
 
+
+#%%
+
+#human observations from iNaturalist
 observed_antelope = pd.read_csv(os.environ['PWD'] + '/poppy-finder/data/observations-antelope.csv')
 observed_elsinore = pd.read_csv(os.environ['PWD'] + '/poppy-finder/data/observations-elsinore.csv') 
+
+
+#%%
+
+#get latitudes and longitudes of pixels predicted to be poppies
+#lats_dict = np.load(os.environ['PWD'] + '/poppy-finder/data/lats.npz')
+#longs_dict = np.load(os.environ['PWD'] + '/poppy-finder/data/longs.npz')
+
+#get latitudes and longitudes of patch centroid
+lat_lon_dict = np.load(os.environ['PWD'] + '/poppy-finder/data/centroids_lat_long.npz')
+
+
+
 #%%
 
 st.markdown('---')
@@ -239,14 +261,31 @@ if b:
                  but how about getting your flower fix at the {visit1} or {visit2}? 
                  '''
         st.markdown(result)
+    
+    
+    key = df_tmp.iloc[-1].filename
+    
+#    #scatter plot of every poppy pixel
+#    lat = lats_dict[key]
+#    long = longs_dict[key]
+#    
+#    if len(lat) > 0:
+#        df_lat_long = pd.DataFrame({'lat':lat, 'lon':long})
+#        #st.map(df_lat_long, zoom=11)
+#        st.map(df_lat_long)
+    
+    #scatter plot of each patch centroid
+    lat_lon = lat_lon_dict[key]
+    
+    if len(lat_lon) > 0:
+        df_lat_lon = pd.DataFrame(lat_lon, columns=['lat','lon'])
+        st.map(df_lat_lon)
         
+    
+    
 
 ##url = 'https://www.inaturalist.org/observations?%20quality_grade=any&identifications=any&swlat=34.65275197179807&swlng=-118.54212363125656&nelat=34.80793834080253&nelng=-118.20839253818516&taxon_id=48225&d1=2019-04-01&d2=2019-04-30'
 #x = f'''[alt text](https://www.inaturalist.org/observations?%20quality_grade=any&identifications=any&swlat=34.65275197179807&swlng=-118.54212363125656&nelat=34.80793834080253&nelng=-118.20839253818516&taxon_id=48225&d1=2019-04-01&d2=2019-04-30)'''
 #st.markdown(x)
-
-
-
-
 
 
