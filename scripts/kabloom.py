@@ -85,29 +85,39 @@ df_antelope, df_elsinore, df_grassmtn, df_list = get_areas()
 
 #%%
 
-#human observations from iNaturalist
-observed_antelope = pd.read_csv(os.environ['PWD'] + '/poppy-finder/data/observations-antelope.csv')
-observed_elsinore = pd.read_csv(os.environ['PWD'] + '/poppy-finder/data/observations-elsinore.csv') 
-
+##get human observations from iNaturalist
+#observed_antelope = pd.read_csv(os.environ['PWD'] + '/poppy-finder/data/observations-antelope.csv')
+#observed_elsinore = pd.read_csv(os.environ['PWD'] + '/poppy-finder/data/observations-elsinore.csv')
 
 #%%
-
-#get latitudes and longitudes of pixels predicted to be poppies
-#lats_dict = np.load(os.environ['PWD'] + '/poppy-finder/data/lats.npz')
-#longs_dict = np.load(os.environ['PWD'] + '/poppy-finder/data/longs.npz')
 
 #get latitudes and longitudes of patch centroid
 lat_lon_dict = np.load(os.environ['PWD'] + '/poppy-finder/data/centroids_lat_long.npz')
 
+#define function to plot scatter of each patch centroid
+def plot_cent(df_tmp, lat_lon_dict):
+
+    key = df_tmp.iloc[-1].filename
+    
+    lat_lon = lat_lon_dict[key]
+    
+    if len(lat_lon) > 0:
+        df_lat_lon = pd.DataFrame(lat_lon, columns=['lat','lon'])
+        st.map(df_lat_lon)
 
 
 #%%
 
-st.markdown('---')
-st.title("kaBLOOM!")
-st.markdown('<style>h1{color: orange;}</style>', unsafe_allow_html=True)
-st.write('The poppy finding app')
-st.markdown('---')
+from PIL import Image
+img = Image.open(os.environ['PWD'] + '/poppy-finder/scripts/kabloom.jpg')
+st.image(img,use_column_width=False)
+
+#format title and header
+
+#st.title("kaBLOOM!")
+#st.markdown('<style>h1{color: orange;}</style>', unsafe_allow_html=True)
+#st.header('The poppy finding app')
+#st.markdown('---')
     
 #%%
 
@@ -133,6 +143,7 @@ if option_loc == 'Lake Elsinore, Riverside County':
     visit1 = f'[San Diego Botanic Garden](https://www.sdbgarden.org/)'
     hikes = f'[here](https://www.alltrails.com/us/california/lake-elsinore)'
     directions = f'[here](https://www.google.com/maps/place/Walker+Canyon/@33.7305734,-117.4092181,14z/data=!3m1!4b1!4m5!3m4!1s0x80dc97c4ad774b6b:0xda907af43c25f7ab!8m2!3d33.7305751!4d-117.3917085)'
+    naturalist = f'''[iNaturalist.org](https://www.inaturalist.org/observations?%20quality_grade=any&identifications=any&nelat=33.79743477450373&nelng=-117.27650644305764&swlat=33.718940112218206&swlng=-117.53729441949768&taxon_id=48225)'''
     
 elif option_loc == 'Grass Mountain, Los Angeles County':
     
@@ -142,6 +153,7 @@ elif option_loc == 'Grass Mountain, Los Angeles County':
     visit2 = f'[Descanso Gardens](https://www.descansogardens.org/)'
     hikes = f'[here](https://www.alltrails.com/trail/us/california/grass-mountain)'
     directions = f'[here](https://www.google.com/maps/place/Grass+Mountain/@34.6360441,-118.4776599,12.1z/data=!4m5!3m4!1s0x80c26f5e580c9a29:0x7c8c3f57fd11159d!8m2!3d34.6410977!4d-118.4134145)'
+    naturalist = f'''[iNaturalist.org](https://www.inaturalist.org/observations?%20quality_grade=any&identifications=any&nelat=34.66426583188337&nelng=-118.32775889890806&swlat=34.62542912869527&swlng=-118.45815288712808&taxon_id=48225)'''
     
 elif option_loc == 'Antelope Valley, Los Angeles County':
     
@@ -151,6 +163,7 @@ elif option_loc == 'Antelope Valley, Los Angeles County':
     visit2 = f'[Descanso Gardens](https://www.descansogardens.org/)'
     hikes = f'[here](https://www.alltrails.com/us/california/lancaster)'
     directions = f'[here](https://www.google.com/maps/place/Antelope+Valley+California+Poppy+Reserve+State+Natural+Reserve/@34.7117001,-118.4264798,13.08z/data=!4m5!3m4!1s0x80c26c00eb7ecc9b:0x582ed8c0bf849de9!8m2!3d34.7249116!4d-118.3969062)'
+    naturalist = f'''[iNaturalist.org](https://www.inaturalist.org/observations?%20quality_grade=any&identifications=any&swlat=34.65275197179807&swlng=-118.54212363125656&nelat=34.80793834080253&nelng=-118.20839253818516&taxon_id=48225)'''
 
 alltrails = f'[AllTrails.com](https://www.alltrails.com/)'
 sheep = f'[here is](https://www.youtube.com/watch?v=UrKkchVOOAs)'
@@ -181,8 +194,6 @@ if b:
                  '''
         st.markdown(result)
         
-        naturalist = f'''[iNaturalist.org](https://www.inaturalist.org/observations?%20quality_grade=any&identifications=any&swlat=34.65275197179807&swlng=-118.54212363125656&nelat=34.80793834080253&nelng=-118.20839253818516&taxon_id=48225&d1=2019-04-01&d2=2019-04-30)'''
-        
         suggestion = f'''In the meantime, check out {naturalist}
                   to keep an eye on recent poppy sightings in the {location} area.
                  '''
@@ -195,7 +206,6 @@ if b:
         result = '''Our algorithm has not detected a bloom yet. We get new satellite info every few days, so keep checking back for updates!'''
         st.markdown(result)
         
-        naturalist = f'''[iNaturalist.org](https://www.inaturalist.org/observations?%20quality_grade=any&identifications=any&swlat=34.65275197179807&swlng=-118.54212363125656&nelat=34.80793834080253&nelng=-118.20839253818516&taxon_id=48225&d1=2019-04-01&d2=2019-04-30)'''
         suggestion = f'''In the meantime, check out {naturalist} 
         to keep an eye on recent poppy sightings in the {location} area.
         '''
@@ -220,40 +230,31 @@ if b:
     #March and April - bloom
     elif option_date.month in [3,4] and bloom_level > 0:
         
-        #medium bloom
-        if n_patches < 5:
-            
-            n = round( math.sqrt(max_patch) / 10 )
-            
-            result = f'''Poppies are blooming at {location}! The coverage level is currently **moderate** 
-            and the largest poppy patch right now is about the size of {n} football fields.'''
-            st.markdown(result)
-            
-            suggestion = f'''So grab some water and a friend and visit now for great photo ops!'''
-            st.markdown(suggestion)
-            
-            suggestion = f'''Click {directions} to get directions to the site from your location. 
-            And while we're at it, {hikes} are some great nearby hikes recommended by the folks over at {alltrails}.'''
-            st.markdown(suggestion)
+        #get number of patches
+        n = round( math.sqrt(max_patch) / 10 )
         
-        #large bloom
+        #get bloom size
+        if n_patches < 5:
+            level = 'moderate' #medium bloom
         else:
+            level = 'high' #large bloom
             
-            n = round( math.sqrt(max_patch) / 10 )
             
-            result = f'''The poppy fields are blazing right now at {location}! The coverage level is **high** 
-            and the largest poppy patch is the size of {n} football fields!'''
-            st.markdown(result)
-            
-            suggestion = f'''Grab some water and a friend and visit now for great photo ops!'''
-            st.markdown(suggestion)
-            
-            suggestion = f'''Click {directions} to get directions to the site from your location. 
-            And while we're at it, {hikes} are some great nearby hikes recommended by the folks over at {alltrails}.'''
-            st.markdown(suggestion)
-            
-    
-    
+        result = f'''The poppy fields are blazing right now at {location}! The coverage level is **{level}** 
+        and the largest poppy patch is the size of {n} football fields!'''
+        st.markdown(result)
+        
+        result = f'''The map below highlights some of the larger poppy patch locations.'''
+        st.markdown(result)
+        
+        #plot location of patch centroids
+        plot_cent(df_tmp, lat_lon_dict)
+        
+        suggestion = f'''Click {directions} to get directions to the site from your location. 
+        And while we're at it, {hikes} are some great nearby hikes recommended by the folks over at {alltrails}.'''
+        st.markdown(suggestion)
+        
+        
     #May through December
     else:
         
@@ -262,30 +263,5 @@ if b:
                  '''
         st.markdown(result)
     
-    
-    key = df_tmp.iloc[-1].filename
-    
-#    #scatter plot of every poppy pixel
-#    lat = lats_dict[key]
-#    long = longs_dict[key]
-#    
-#    if len(lat) > 0:
-#        df_lat_long = pd.DataFrame({'lat':lat, 'lon':long})
-#        #st.map(df_lat_long, zoom=11)
-#        st.map(df_lat_long)
-    
-    #scatter plot of each patch centroid
-    lat_lon = lat_lon_dict[key]
-    
-    if len(lat_lon) > 0:
-        df_lat_lon = pd.DataFrame(lat_lon, columns=['lat','lon'])
-        st.map(df_lat_lon)
-        
-    
-    
-
-##url = 'https://www.inaturalist.org/observations?%20quality_grade=any&identifications=any&swlat=34.65275197179807&swlng=-118.54212363125656&nelat=34.80793834080253&nelng=-118.20839253818516&taxon_id=48225&d1=2019-04-01&d2=2019-04-30'
-#x = f'''[alt text](https://www.inaturalist.org/observations?%20quality_grade=any&identifications=any&swlat=34.65275197179807&swlng=-118.54212363125656&nelat=34.80793834080253&nelng=-118.20839253818516&taxon_id=48225&d1=2019-04-01&d2=2019-04-30)'''
-#st.markdown(x)
 
 
