@@ -1,4 +1,4 @@
-# poppy-finder
+# kaBLOOM
 
 
 The following is a general description of what each notebook file does and the order in which to run them.
