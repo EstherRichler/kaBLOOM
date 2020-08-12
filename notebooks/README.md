@@ -1,7 +1,7 @@
 # Jupyter notebook files
 
 
-This folder contains two subfolders (eda and analysis_pipeline) an a demo Jupyter notebook file (kabloom_code_demo.ipynb). The analysis_pipeline folder contains 7 Jupyter notebook files and the eda folder contains 4 Jupyter notebook files. All of these files are briefly described below. The demo Jupyter notebook file contains an abridged version of the 7 notebook files in the analysis_pipeline folder.
+This folder contains two subfolders (eda and analysis_pipeline) and a demo Jupyter notebook file (kabloom_code_demo.ipynb). The analysis_pipeline folder contains 7 Jupyter notebook files and the eda folder contains 4 Jupyter notebook files. All of these files are briefly described below. The demo Jupyter notebook file contains an abridged version of the 7 notebook files in the analysis_pipeline folder.
 
 
 The following is a general description of what each Jupyter notebook file does and the order in which to run them.
@@ -46,7 +46,12 @@ Here I get information from the poppy bloom areas from step 5 (like number of pa
 Here I get the latitude and longitude for the centroid of every patch identified in step 5.
 
 
-At this point I have the data I need to run the app.
+8. feature importances.ipynb
+
+This file has information about feature importances in the final model.
+
+
+At this point I have everything I need to run the app.
 
 
 
