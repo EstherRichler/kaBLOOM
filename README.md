@@ -1,4 +1,6 @@
+<p align="center">
 <img src="scripts/kabloom.jpg" alt="Logo" width="400" height="150">
+    </p>
 
 <br />
 
