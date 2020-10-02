@@ -1,5 +1,5 @@
 <p align="center">
-<img src="scripts/kabloom.jpg" alt="Logo" width="400" height="150">
+<img src="scripts/kabloom.jpg" alt="Logo" width="450" height="150">
     </p>
 
 <br />
@@ -18,7 +18,8 @@
 <a href="http://35.164.63.227:8501/">Demo the app</a>
     </p>
     
-    
+<br />
+
     
 ## Table of Contents
 
