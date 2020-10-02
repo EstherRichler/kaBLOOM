@@ -1,16 +1,16 @@
-<img src="scripts/kabloom.jpg" alt="Logo" width="400" height="200">
+<img src="scripts/kabloom.jpg" alt="Logo" width="400" height="150">
 
 <br />
 
-<p style="text-align:center">The kaBLOOM app uses satellite imagery to find poppy blooms.</p>
+<p align="center">The kaBLOOM app uses satellite imagery to find poppy blooms.</p>
     
-<p style="text-align:center">For this proof-of-concept demo I used data from the 2017-2020 poppy seasons (March-April) at three California locations.</p>
+<p align="center">For this proof-of-concept demo I used data from the 2017-2020 poppy seasons (March-April) at three California locations.</p>
     
-<p style="text-align:center">This repository contains the code I used to create the app.</p>
+<p align="center">This repository contains the code I used to create the app.</p>
 
 <br />
 
-<p style="text-align:center">
+<p align="center">
 <a href="https://youtu.be/guCyMfn1zSo">View YouTube demo</a>
 ·
 <a href="http://35.164.63.227:8501/">Demo the app</a>
