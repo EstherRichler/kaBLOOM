@@ -22,10 +22,10 @@ import math
 def get_areas():
     
     #load areas
-    areas_2017 = np.load(os.environ['PWD'] + '/kaBLOOM/data/areas_2017.npz')
-    areas_2018 = np.load(os.environ['PWD'] + '/kaBLOOM/data/areas_2018.npz')
-    areas_2019 = np.load(os.environ['PWD'] + '/kaBLOOM/data/areas_2019.npz')
-    areas_2020 = np.load(os.environ['PWD'] + '/kaBLOOM/data/areas_2020.npz')
+    areas_2017 = np.load('/kaBLOOM/data/areas_2017.npz')
+    areas_2018 = np.load('/kaBLOOM/data/areas_2018.npz')
+    areas_2019 = np.load('/kaBLOOM/data/areas_2019.npz')
+    areas_2020 = np.load('/kaBLOOM/data/areas_2020.npz')
     
     #convert from .npz to dictionaries
     areas_2017_dict = {item: areas_2017[item] for item in areas_2017.files}
@@ -92,7 +92,7 @@ df_antelope, df_elsinore, df_grassmtn, df_list = get_areas()
 #%%
 
 #get latitudes and longitudes of patch centroid
-lat_lon_dict = np.load(os.environ['PWD'] + '/kaBLOOM/data/centroids_lat_long.npz')
+lat_lon_dict = np.load('/kaBLOOM/data/centroids_lat_long.npz')
 
 #define function to plot scatter of each patch centroid
 def plot_cent(df_tmp, lat_lon_dict):
@@ -109,7 +109,7 @@ def plot_cent(df_tmp, lat_lon_dict):
 #%%
 
 from PIL import Image
-img = Image.open(os.environ['PWD'] + '/kaBLOOM/scripts/kabloom.jpg')
+img = Image.open('/kaBLOOM/scripts/kabloom.jpg')
 st.image(img,use_column_width=False)
 
 #format title and header
