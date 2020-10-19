@@ -84,12 +84,6 @@ df_antelope, df_elsinore, df_grassmtn, df_list = get_areas()
 
 #%%
 
-##get human observations from iNaturalist
-#observed_antelope = pd.read_csv(os.environ['PWD'] + '/kaBLOOM/data/observations-antelope.csv')
-#observed_elsinore = pd.read_csv(os.environ['PWD'] + '/kaBLOOM/data/observations-elsinore.csv')
-
-#%%
-
 #get latitudes and longitudes of patch centroid
 lat_lon_dict = np.load('../data/centroids_lat_long.npz')
 
@@ -111,13 +105,6 @@ from PIL import Image
 img = Image.open('kabloom.jpg')
 st.image(img,use_column_width=False)
 
-#format title and header
-
-#st.title("kaBLOOM!")
-#st.markdown('<style>h1{color: orange;}</style>', unsafe_allow_html=True)
-#st.header('The poppy finding app')
-#st.markdown('---')
-    
 #%%
 
 #user selects location
