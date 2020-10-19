@@ -4,11 +4,19 @@
 
 <br />
 
-<p align="center">The kaBLOOM app uses satellite imagery to find poppy blooms.</p>
+<p align="center">The kaBLOOM app uses satellite imagery to find poppy blooms in three California locations.</p>
     
-<p align="center">For this proof-of-concept demo I used data from the 2017-2020 poppy seasons (March-April) at three California locations.</p>
+<p align="center">For this proof-of-concept demo I used data from the 2017-2020 poppy seasons (March-April).</p>
     
 <p align="center">This repository contains the code I used to create the app.</p>
+
+<p align="center">
+For a high level overview of project ideation and execution see blog posts 
+<a href="https://themlrebellion.com/blog/Learning-To-Think-Like-Data-Scientist/">Part 1</a>
+and
+<a href="https://themlrebellion.com/blog/Learning-To-Think-Like-Data-Scientist-2/">Part 2</a>
+.
+    </p>
 
 <br />
 
@@ -101,7 +109,7 @@ At this point I have everything I need to run the app.
 1. eda_antelope.ipynb, eda_elsinore.ipynb, eda_grassmtn.ipynb <br /> Exploratory data analysis - these files visualize the recreated true color satellite images for all of the dates with satellite data available in March and April of 2019. These files can be run after step 1 above.
 
 
-2. model_exploration.ipynb <br /> In this notebook I explore and compare the results from 5 different binary classifiers (logistic regression, random forest, naive bayes, stochastic gradient descent, and gradient boosting). In the end I chose to go with the random forest because it performed the best out of the box and generalized the best to unseen data. I ran this analysis between steps 2 and 3 of the analysis pipeline.
+2. model_exploration.ipynb <br /> In this notebook I explore and compare the results from 4 different binary classifiers (logistic regression, random forest, naive bayes, and support vector machine). In the end I chose to go with the random forest because it performed the best out of the box and generalized the best to unseen data. I ran this analysis between steps 2 and 3 of the analysis pipeline.
 
 
 
