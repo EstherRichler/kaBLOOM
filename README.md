@@ -1,5 +1,5 @@
 <p align="center">
-<img src="scripts/kabloom.jpg" alt="Logo" width="450" height="150">
+<img src="scripts/kabloom.jpg" alt="Logo" width="450" height="130">
     </p>
 
 <br />
@@ -119,16 +119,25 @@ The 'scripts' folder has the Python code that I used to create the app in Stream
 <!-- ROADMAP -->
 ## Roadmap
 
-The following are some open issues and future plans. Most of these are big and can be their own projects. Contact me if you'd like to work on these - or feel free to go ahead and tackle them on your own (or develop them into a separate project). I'm new to open source, so I'd love to hear from you if you have that experience and would like to work together on this project (and get teamwork experience!).
+The following are some open issues and future plans. Some of these are big and can be their own projects. Contact me if you'd like to work on these - or feel free to go ahead and tackle them on your own (or develop them into a separate project). I'm new to open source, so I'd love to hear from you if you have that experience and would like to work together on this project (and get teamwork experience!).
 
+* Data science:
+    * Add forecasting ability (use weather data etc.)
+    * Consider using a neural network for classifying pixels - this would take nearby pixels into account when making class predictions
+    
+* Data engineering:
+    * Engineer data storage pipeline
+    * Scale data storage to be able to include more locations
 
-1. Add forecasting ability (use weather data etc.)
-2. See if I can get free Sentinel API access. Otherwise, consider other satellites
-3. Engineer data storage pipeline
-4. Get automatic download ability for continuous updates from satellite as the info becomes available
-5. Automate the online analysis as info becomes available
-6. Scale to more locations - figure out if I should  just do broad sweeps of large areas to look for blooms, or if I should take a more targeted (but manual) approach of choosing locations based on past blooms
-7. Include other types of flowers. I came across some massive purple blooms in a central california image. (Don't know what those flowers were, maybe do a bit of research). Also saw some yellow blooms.
+* DevOps:
+    * Get automatic download ability for continuous updates from satellite as the info becomes available (for 2021 season)
+    * Automate the online analysis as info becomes available
+    * Migrate app to personal website
+    
+* Other:
+    * See if I can get free Sentinel API access. Otherwise, consider other satellites
+    * Add more bloom locations. But first figure out if I should do broad sweeps of large areas to look for blooms, or if I should take a more targeted (but manual) approach by choosing locations based on past known blooms
+    * Include other types of flowers? I came across some massive purple blooms in a central California image. I don't know what those flowers were, maybe do a bit of research. I also saw some yellow blooms.
 
 
 
